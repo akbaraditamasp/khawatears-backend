@@ -15,7 +15,7 @@ class Media
     {
         Validate($_FILES, [
             "files" => "required|array",
-            "files.*" => "uploaded_file:0,1000K,png,jpeg",
+            "files.*" => "uploaded_file:0,10M,png,jpeg",
         ]);
 
         $db = Db();
