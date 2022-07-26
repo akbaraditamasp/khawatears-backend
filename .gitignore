@@ -1,0 +1,9 @@
+uploads/*
+!uploads/.gitkeep
+vendor
+composer.lock
+
+img/node_modules
+img/package-lock.json
+
+.env

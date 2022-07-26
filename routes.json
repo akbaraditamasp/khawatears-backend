@@ -1,0 +1,78 @@
+[
+  {
+    "route": "[GET]/api/auth/login",
+    "handlers": ["Controller\\Auth::login"]
+  },
+  {
+    "route": "[DELETE]/api/auth/logout",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Auth::logout"]
+  },
+  {
+    "route": "[GET]/api/product",
+    "handlers": ["Middleware\\Auth::optional", "Controller\\Product::index"]
+  },
+  {
+    "route": "[POST]/api/product",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Product::create"]
+  },
+  {
+    "route": "[GET]/api/product/slug/:slug",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Product::get"]
+  },
+  {
+    "route": "[GET]/api/product/:id",
+    "handlers": ["Middleware\\Auth::optional", "Controller\\Product::get"]
+  },
+  {
+    "route": "[DELETE]/api/product/:id",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Product::delete"]
+  },
+  {
+    "route": "[PUT]/api/product/:id",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Product::update"]
+  },
+  {
+    "route": "[GET]/api/media",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Media::index"]
+  },
+  {
+    "route": "[DELETE]/api/media/:id",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Media::delete"]
+  },
+  {
+    "route": "[POST]/api/media",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Media::create"]
+  },
+  {
+    "route": "[PUT]/api/store",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Store::save"]
+  },
+  {
+    "route": "[GET]/api/store",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Store::get"]
+  },
+  {
+    "route": "[POST]/api/slider",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Slider::create"]
+  },
+  {
+    "route": "[GET]/api/slider",
+    "handlers": ["Middleware\\Auth::optional", "Controller\\Slider::index"]
+  },
+  {
+    "route": "[GET]/api/slider/:id",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Slider::get"]
+  },
+  {
+    "route": "[DELETE]/api/slider/:id",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Slider::delete"]
+  },
+  {
+    "route": "[PUT]/api/slider/:id",
+    "handlers": ["Middleware\\Auth::verify", "Controller\\Slider::update"]
+  },
+  {
+    "route": "[GET]/*",
+    "handlers": ["Controller\\Home::index"]
+  }
+]
