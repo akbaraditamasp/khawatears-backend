@@ -17,7 +17,7 @@
   },
   {
     "route": "[GET]/api/product/slug/:slug",
-    "handlers": ["Middleware\\Auth::verify", "Controller\\Product::get"]
+    "handlers": ["Controller\\Product::get"]
   },
   {
     "route": "[GET]/api/product/:id",
@@ -49,7 +49,7 @@
   },
   {
     "route": "[GET]/api/store",
-    "handlers": ["Middleware\\Auth::verify", "Controller\\Store::get"]
+    "handlers": ["Controller\\Store::get"]
   },
   {
     "route": "[POST]/api/slider",

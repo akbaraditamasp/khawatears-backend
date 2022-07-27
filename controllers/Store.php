@@ -14,8 +14,8 @@ class Store
             "store_name" => "required",
             "tagline" => "required",
             "short_description" => "required",
-            "social" => "required|array",
             "social.*.name" => "required",
+            "social.*.icon" => "required",
             "social.*.link" => "required",
         ]);
 
