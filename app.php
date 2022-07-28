@@ -92,6 +92,16 @@ function PrepareFileName($filename, Medoo $db)
     return $rand . "-" . $filename;
 }
 
+function PrepareIdentifier(Medoo $db)
+{
+    $rand = RandString(10);
+    while (($db->get("orders", ["identifier"], ["identifier" => $rand]))) {
+        $rand = RandString(10);
+    }
+
+    return $rand;
+}
+
 function Upload(array $files)
 {
     foreach ($files as $file) {

@@ -72,6 +72,30 @@
     "handlers": ["Middleware\\Auth::verify", "Controller\\Slider::update"]
   },
   {
+    "route": "[POST]/api/order",
+    "handlers": ["Controller\\Order::create"]
+  },
+  {
+    "route": "[GET]/api/order/identifier/:identifier",
+    "handlers": ["Controller\\Order::getByIdentifier"]
+  },
+  {
+    "route": "[POST]/api/order/cart",
+    "handlers": ["Controller\\Order::getCart"]
+  },
+  {
+    "route": "[POST]/api/order/callback",
+    "handlers": ["Controller\\Order::callback"]
+  },
+  {
+    "route": "[GET]/api/order/courier",
+    "handlers": ["Controller\\Order::getCourier"]
+  },
+  {
+    "route": "[POST]/api/order/check-address",
+    "handlers": ["Controller\\Order::checkAddress"]
+  },
+  {
     "route": "[GET]/*",
     "handlers": ["Controller\\Home::index"]
   }

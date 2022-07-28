@@ -18,18 +18,21 @@ class Product
 
         $limit = 12;
         $offset = (Get("page") ? ((int) Get("page") - 1) : 0) * $limit;
+        $q = Get("q") ? "%" . Get("q") . "%" : "%%";
 
         $count_of_page = ceil(((int) $db->count("products")) / $limit);
 
         if (isset($req["user"])) {
-            $query = $db->query("SELECT <products.id>,<products.product_name>,<products.price>,<products.price_before>,<products.slug>,<media.name> AS <image>,<products.publish> FROM <products> LEFT JOIN (SELECT <products_media.id>,<media.name>,<products_media.product_id> FROM <products_media> LEFT JOIN <media> ON <media.id> = <products_media.media_id> WHERE <products_media.position> = '0' GROUP BY <products_media.product_id>) AS <media> ON <media.product_id> = <products.id> ORDER BY <products.id> DESC LIMIT :limit OFFSET :offset", [
+            $query = $db->query("SELECT <products.id>,<products.product_name>,<products.price>,<products.price_before>,<products.slug>,<media.name> AS <image>,<products.publish> FROM <products> LEFT JOIN (SELECT <products_media.id>,<media.name>,<products_media.product_id> FROM <products_media> LEFT JOIN <media> ON <media.id> = <products_media.media_id> WHERE <products_media.position> = '0' GROUP BY <products_media.product_id>) AS <media> ON <media.product_id> = <products.id> WHERE <products.product_name> LIKE :q ORDER BY <products.id> DESC LIMIT :limit OFFSET :offset", [
                 ":limit" => $limit,
                 ":offset" => $offset,
+                ":q" => $q,
             ]);
         } else {
-            $query = $db->query("SELECT <products.id>,<products.product_name>,<products.price>,<products.price_before>,<products.slug>,<media.name> AS <image> FROM <products> LEFT JOIN (SELECT <products_media.id>,<media.name>,<products_media.product_id> FROM <products_media> LEFT JOIN <media> ON <media.id> = <products_media.media_id> WHERE <products_media.position> = '0' GROUP BY <products_media.product_id>) AS <media> ON <media.product_id> = <products.id> WHERE <products.publish>=TRUE ORDER BY <products.id> DESC LIMIT :limit OFFSET :offset", [
+            $query = $db->query("SELECT <products.id>,<products.product_name>,<products.price>,<products.price_before>,<products.slug>,<media.name> AS <image> FROM <products> LEFT JOIN (SELECT <products_media.id>,<media.name>,<products_media.product_id> FROM <products_media> LEFT JOIN <media> ON <media.id> = <products_media.media_id> WHERE <products_media.position> = '0' GROUP BY <products_media.product_id>) AS <media> ON <media.product_id> = <products.id> WHERE <products.publish>=TRUE AND <products.product_name> LIKE :q ORDER BY <products.id> DESC LIMIT :limit OFFSET :offset", [
                 ":limit" => $limit,
                 ":offset" => $offset,
+                ":q" => $q,
             ]);
         }
 
