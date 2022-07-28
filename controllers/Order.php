@@ -30,7 +30,7 @@ class Order
             JSON([], 401);
         }
 
-        Validate($_POST, [
+        Validate(($_POST ? $_POST : []), [
             "id" => "required",
         ]);
 
@@ -38,20 +38,19 @@ class Order
 
         if ($data) {
             if ($data["status"] && $data["external_id"]) {
-                if ($data["status"] === "PAID") {
+                if ($data["status"] == "PAID" || $data["status"] == "SETTLED") {
                     $db = Db();
                     $db->update("orders", [
                         "is_paid" => true,
                     ], [
                         "identifier" => $data["external_id"],
                     ]);
+                    JSON($data);
                 }
             }
 
-            JSON([]);
-        } else {
-            JSON([], 500);
         }
+        JSON($data, 400);
     }
 
     public static function getCart()
@@ -233,6 +232,10 @@ class Order
             "payment_link",
             "is_paid [Bool]",
         ], ["identifier" => $identifier]);
+
+        if (!$data) {
+            JSON(["error" => "Transaksi tidak ditemukan", 404]);
+        }
 
         $details = $db->select("order_details", [
             "id [Int]",

@@ -49,12 +49,9 @@ class XenditLib
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_URL => "https://api.xendit.co/v2/invoices/$id",
             CURLOPT_USERPWD => $_ENV["XENDIT_KEY"] . ":",
         ));
