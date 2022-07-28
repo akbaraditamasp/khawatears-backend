@@ -47,9 +47,8 @@ class Order
                     ]);
                     JSON($data);
                 }
+                JSON([], 400);
             }
-
-            JSON([], 400);
         }
         JSON([]);
     }
