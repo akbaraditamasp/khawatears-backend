@@ -49,8 +49,9 @@ class Order
                 }
             }
 
+            JSON([], 400);
         }
-        JSON($data, 400);
+        JSON([]);
     }
 
     public static function getCart()
