@@ -47,7 +47,6 @@ class Order
                     ]);
                     JSON($data);
                 }
-                JSON([], 400);
             }
         }
         JSON([]);
@@ -202,6 +201,8 @@ class Order
             }, $details);
 
             $db->insert("order_details", $details);
+
+            \WhatsApp\Send($data["customer_whatsapp"], \WhatsApp\OrderTemplate($data, $valid_address["full_address"]));
         }
 
         JSON($data + [

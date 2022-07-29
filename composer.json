@@ -19,7 +19,8 @@
     "files": [
       "app.php",
       "RajaOngkir.php",
-      "XenditLib.php"
+      "XenditLib.php",
+      "WhatsApp.php"
     ],
     "psr-4": {
       "Controller\\": "controllers/",
