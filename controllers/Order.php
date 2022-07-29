@@ -202,7 +202,7 @@ class Order
 
             $db->insert("order_details", $details);
 
-            \WhatsApp\Send($data["customer_whatsapp"], \WhatsApp\OrderTemplate($data, $valid_address["full_address"]));
+            \WhatsApp\Send($data["customer_whatsapp"], \WhatsApp\OrderTemplate($data + ["information" => $information], $valid_address["full_address"]));
         }
 
         JSON($data + [

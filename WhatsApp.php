@@ -6,28 +6,28 @@ use Error;
 function OrderTemplate($data, $address)
 {
     $text = "Halo Kak %f_name%!
-    Terima kasih sudah memesan produknya Khawatears ya, berikut detail pesanan kakak:
+Terima kasih sudah memesan produknya Khawatears ya, berikut detail pesanan kakak:
 
-    No. Transaksi:
-    %id%
+No. Transaksi:
+%id%
 
-    Nama:
-    %name%
+Nama:
+%name%
 
-    No. Whatsapp:
-    %number%
+No. Whatsapp:
+%number%
 
-    Alamat:
-    %address%
+Alamat:
+%address%
 
-    Pengiriman:
-    %shipping%
+Pengiriman:
+%shipping%
 
-    Total Bayar:
-    %total%
+Total Bayar:
+%total%
 
-    Untuk pembayaran dan detail pemesanan, kakak bisa buka link berikut
-    https://store.khawatears.com/order/%id%";
+Untuk pembayaran dan detail pemesanan, kakak bisa buka link berikut
+https://store.khawatears.com/order/%id%";
 
     $text = str_replace("%id%", $data["identifier"], $text);
     $text = str_replace("%f_name%", (explode(" ", $data["customer_name"])[0]), $text);
